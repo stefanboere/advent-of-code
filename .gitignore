@@ -4,6 +4,10 @@ target
 
 __pycache__
 cpp/main
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
 
 /.pre-commit-config.yaml
 .direnv

@@ -1,11 +1,9 @@
 // Copyright 2021 Stefan Boere <s.boere@hotmail.com>
+#include "include/day01.h"
 #include <fstream>
-#include <iostream>
 #include <iterator>
 #include <tuple>
 #include <vector>
-using std::cout;
-using std::endl;
 
 const std::vector<int> ex01_example = {199, 200, 208, 210, 200,
                                        207, 240, 269, 260, 263};
@@ -57,10 +55,4 @@ std::tuple<int, int> ex01() {
   std::tuple<int, int> result(ex01a, ex01b);
 
   return result;
-}
-
-int main() {
-  auto day01 = ex01();
-  cout << "Day 01: " << std::get<0>(day01) << " " << std::get<1>(day01) << endl;
-  return 0;
 }

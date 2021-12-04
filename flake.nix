@@ -40,6 +40,7 @@
           cargo
           rustfmt
           j
+          cmake
           swiProlog
           julia_16-bin
           sbcl
