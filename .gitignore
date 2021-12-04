@@ -3,6 +3,7 @@ dist-newstyle
 target
 
 __pycache__
+cpp/main
 
 /.pre-commit-config.yaml
 .direnv
