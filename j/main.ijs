@@ -30,3 +30,19 @@ ex02a =: */+/ex02_i
 
 ex02b =: ({.ex02b_diff/|.0 0,ex02_i) * (}.+/ex02_i)
 ex02 =: ex02a,ex02b
+
+
+read03 =: 3 : 'cutopen toJ 1!:1 y'
+ex03_input =: read03 (< '../input/03')
+
+ex03a_sign =: monad : 0
+* +/ _1&+ 2&* > ". @ (y&{) each ex03_input
+)
+ex03a_gamma_mask =: -:/. 1&+@ ex03a_sign /. i.12
+ex03a_gamma =: +/(2^i.-12) *. ex03a_gamma_mask          NB. 1337
+ex03a_epsilon =: +/((2^i.-12) *. (-. ex03a_gamma_mask)) NB. 2758
+ex03a =: ex03a_gamma * ex03a_epsilon                    NB. 3687446
+
+
+
+
