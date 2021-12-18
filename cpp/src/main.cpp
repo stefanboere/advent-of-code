@@ -7,6 +7,7 @@
 #include "include/day04.h"
 #include "include/day05.h"
 #include "include/day06.h"
+#include "include/day07.h"
 using std::cout;
 using std::endl;
 
@@ -24,5 +25,7 @@ int main() {
   cout << "Day 05: " << std::get<0>(day05) << " " << std::get<1>(day05) << endl;
   auto day06 = ex06();
   cout << "Day 06: " << std::get<0>(day06) << " " << std::get<1>(day06) << endl;
+  auto day07 = ex07();
+  cout << "Day 07: " << std::get<0>(day07) << " " << std::get<1>(day07) << endl;
   return 0;
 }
