@@ -1,4 +1,5 @@
 // Copyright 2021 Stefan Boere <s.boere@hotmail.com>
+#include <iomanip>
 #include <iostream>
 #include <tuple>
 #include "include/day01.h"
@@ -9,26 +10,24 @@
 #include "include/day06.h"
 #include "include/day07.h"
 #include "include/day08.h"
+#include "include/day09.h"
 using std::cout;
 using std::endl;
 
+template <typename T, typename S> void day(int day, std::tuple<T, S> result) {
+  printf("Day %02d: ", day);
+  cout << std::get<0>(result) << " " << std::get<1>(result) << endl;
+}
 
 int main() {
-  auto day01 = ex01();
-  cout << "Day 01: " << std::get<0>(day01) << " " << std::get<1>(day01) << endl;
-  auto day02 = ex02();
-  cout << "Day 02: " << std::get<0>(day02) << " " << std::get<1>(day02) << endl;
-  auto day03 = ex03();
-  cout << "Day 03: " << std::get<0>(day03) << " " << std::get<1>(day03) << endl;
-  auto day04 = ex04();
-  cout << "Day 04: " << std::get<0>(day04) << " " << std::get<1>(day04) << endl;
-  auto day05 = ex05();
-  cout << "Day 05: " << std::get<0>(day05) << " " << std::get<1>(day05) << endl;
-  auto day06 = ex06();
-  cout << "Day 06: " << std::get<0>(day06) << " " << std::get<1>(day06) << endl;
-  auto day07 = ex07();
-  cout << "Day 07: " << std::get<0>(day07) << " " << std::get<1>(day07) << endl;
-  auto day08 = ex08();
-  cout << "Day 08: " << std::get<0>(day08) << " " << std::get<1>(day08) << endl;
+  day(1, ex01());
+  day(2, ex02());
+  day(3, ex03());
+  day(4, ex04());
+  day(5, ex05());
+  day(6, ex06());
+  day(7, ex07());
+  day(8, ex08());
+  day(9, ex09());
   return 0;
 }
