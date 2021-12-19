@@ -1,13 +1,14 @@
 // Copyright 2021 Stefan Boere <s.boere@hotmail.com>
 #include "include/day04.h"
 #include <fstream>
+#include <iostream>
 #include <iterator>
+#include <set>
+#include <sstream>
+#include <string>
 #include <tuple>
 #include <vector>
-#include <string>
-#include <sstream>
-#include <iostream>
-#include <set>
+#include "include/utils.h"
 
 int card_value(std::set<int> xs, std::array<int, 25> card) {
   int result = 0;
@@ -21,7 +22,7 @@ int card_value(std::set<int> xs, std::array<int, 25> card) {
 
 int check_card(std::set<int> xs, std::array<int, 25> card) {
   // Check rows
-  for (int i = 0; i < 25; i+=5) {
+  for (int i = 0; i < 25; i += 5) {
     bool allDrawn = true;
     for (int j = i; j < i + 5; j++) {
       allDrawn &= xs.find(card[j]) != xs.end();
@@ -32,7 +33,7 @@ int check_card(std::set<int> xs, std::array<int, 25> card) {
 
   for (int i = 0; i < 5; i++) {
     bool allDrawn = true;
-    for (int j = i; j < 25; j+=5) {
+    for (int j = i; j < 25; j += 5) {
       allDrawn &= xs.find(card[j]) != xs.end();
     }
     if (allDrawn)
@@ -81,39 +82,22 @@ int ex04b_work(std::vector<int> xs, std::vector<std::array<int, 25>> cards) {
   return 0;
 }
 
-template <typename Out>
-void split(const std::string &s, char delim, Out result) {
-  std::istringstream iss(s);
-  std::string item;
-  while (std::getline(iss, item, delim)) {
-    if (!item.empty()) {
-      *result++ = stoi(item);
-    }
-  }
-}
-
-std::vector<int> split(const std::string &s, char delim) {
-    std::vector<int> elems;
-    split(s, delim, std::back_inserter(elems));
-    return elems;
-}
-
 std::tuple<int, int> ex04() {
   std::ifstream ex04_file("../input/04");
   std::vector<std::array<int, 25>> ex04_cards;
   std::string line;
 
   std::getline(ex04_file, line);
-  std::vector<int> ex04_input = split(line, ',');
+  std::vector<int> ex04_input = split<int>(line, ',');
 
   int row = 0;
-  std::array<int, 25> card = { 0 };
+  std::array<int, 25> card = {0};
   while (std::getline(ex04_file, line)) {
     if (line.empty())
       continue;
 
     int col = 0;
-    for (auto &el: split(line, ' ')) {
+    for (auto &el : split<int>(line, ' ')) {
       card[row * 5 + col] = el;
       col++;
     }

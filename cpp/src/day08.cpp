@@ -8,6 +8,7 @@
 #include <sstream>
 #include <tuple>
 #include <vector>
+#include "include/utils.h"
 
 struct Display {
   std::vector<std::string> patterns;
@@ -106,23 +107,6 @@ int ex08b_work(std::vector<Display> xs) {
   return result;
 }
 
-template <typename Out>
-void split_str(const std::string &s, char delim, Out result) {
-  std::istringstream iss(s);
-  std::string item;
-  while (std::getline(iss, item, delim)) {
-    if (!item.empty()) {
-      *result++ = item;
-    }
-  }
-}
-
-std::vector<std::string> split_str(const std::string &s, char delim) {
-  std::vector<std::string> elems;
-  split_str(s, delim, std::back_inserter(elems));
-  return elems;
-}
-
 std::tuple<int, int> ex08() {
   std::ifstream ex08_file("../input/08");
   std::vector<Display> ex08_input;
@@ -133,8 +117,8 @@ std::tuple<int, int> ex08() {
     auto patterns = line.substr(0, pipe);
     auto digits = line.substr(pipe + 3, line.length());
 
-    auto pat = split_str(patterns, ' ');
-    auto dig = split_str(digits, ' ');
+    auto pat = split<std::string>(patterns, ' ');
+    auto dig = split<std::string>(digits, ' ');
     Display display = Display{pat, dig};
     ex08_input.push_back(display);
   }
