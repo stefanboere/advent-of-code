@@ -11,6 +11,7 @@
 #include "include/day07.h"
 #include "include/day08.h"
 #include "include/day09.h"
+#include "include/day10.h"
 using std::cout;
 using std::endl;
 
@@ -29,5 +30,6 @@ int main() {
   day(7, ex07());
   day(8, ex08());
   day(9, ex09());
+  day(10, ex10());
   return 0;
 }
