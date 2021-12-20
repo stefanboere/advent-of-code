@@ -96,7 +96,7 @@ int ex13b_work(std::vector<Point> xs, std::vector<Fold> folds) {
 
   for (auto &row : grid) {
     for (auto c : row) {
-      std::cout << (c ? '#' : '.');
+      std::cout << (c ? '#' : ' ');
     }
     std::cout << '\n';
   }
