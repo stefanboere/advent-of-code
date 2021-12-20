@@ -43,7 +43,6 @@ std::tuple<int, int> ex07() {
   while (std::getline(ex07_file, line, ',')) {
     ex07_input.push_back(stoi(line));
   }
-  ex07_file.close();
 
   int ex07a = ex07a_work(ex07_input);
   int ex07b = ex07b_work(ex07_input);

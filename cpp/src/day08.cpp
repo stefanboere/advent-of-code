@@ -122,7 +122,6 @@ std::tuple<int, int> ex08() {
     Display display = Display{pat, dig};
     ex08_input.push_back(display);
   }
-  ex08_file.close();
 
   int ex08a = ex08a_work(ex08_input);
   int ex08b = ex08b_work(ex08_input);

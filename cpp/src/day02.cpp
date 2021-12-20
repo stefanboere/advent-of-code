@@ -76,7 +76,6 @@ std::tuple<int, int> ex02() {
     std::tuple<Direction, int> comb(dir, num);
     ex02_input.push_back(comb);
   }
-  ex02_file.close();
 
   int ex02a = ex02a_work(ex02_input);
   int ex02b = ex02b_work(ex02_input);

@@ -116,7 +116,6 @@ std::tuple<int, int> ex09() {
     }
     ex09_input.push_back(iline);
   }
-  ex09_file.close();
 
   int ex09a = ex09a_work(ex09_input);
   int ex09b = ex09b_work(ex09_input);

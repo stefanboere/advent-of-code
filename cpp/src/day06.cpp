@@ -55,7 +55,6 @@ std::tuple<int, int64_t> ex06() {
   while (std::getline(ex06_file, line, ',')) {
     ex06_input.push_back(stoi(line));
   }
-  ex06_file.close();
 
   int ex06a = ex06a_work(ex06_input);
   int64_t ex06b = ex06b_work(ex06_input);

@@ -84,7 +84,6 @@ std::tuple<int, int> ex05() {
     Line line = Line{x0, y0, x1, y1};
     ex05_input.push_back(line);
   }
-  ex05_file.close();
 
   int ex05a = ex05a_work(ex05_input);
   int ex05b = ex05b_work(ex05_input);

@@ -109,7 +109,6 @@ std::tuple<int, int> ex04() {
       row = 0;
     }
   }
-  ex04_file.close();
 
   int ex04a = ex04a_work(ex04_input, ex04_cards);
   int ex04b = ex04b_work(ex04_input, ex04_cards);

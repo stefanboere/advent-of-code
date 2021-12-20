@@ -101,7 +101,6 @@ std::tuple<int, int> ex03() {
   while (std::getline(ex03_file, line)) {
     ex03_input.push_back(stoi(line, 0, 2));
   }
-  ex03_file.close();
 
   int ex03a = ex03a_work(ex03_input);
   int ex03b = ex03b_work(ex03_input);

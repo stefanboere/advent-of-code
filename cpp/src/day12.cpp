@@ -91,7 +91,6 @@ std::tuple<int, int> ex12() {
     std::string end = line.substr(dash + 1, line.size());
     ex12_input.push_back(Edge{start, end});
   }
-  ex12_file.close();
 
   int ex12a = ex12a_work(ex12_input);
   int ex12b = ex12b_work(ex12_input);
