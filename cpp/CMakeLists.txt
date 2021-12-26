@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.4)
+cmake_minimum_required(VERSION 3.21)
 
 project(advent_of_code)
 
@@ -23,4 +23,5 @@ add_executable(main
   src/day15.cpp
   src/day16.cpp
   src/day17.cpp
+  src/day18.cpp
   )
