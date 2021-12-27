@@ -22,6 +22,7 @@
 #include "include/day18.h"
 #include "include/day19.h"
 #include "include/day20.h"
+#include "include/day21.h"
 using std::cout;
 using std::endl;
 
@@ -31,8 +32,9 @@ template <typename T, typename S> void day(int day, std::tuple<T, S> result) {
 }
 
 int main() {
-  day(20, ex20());
+  day(21, ex21());
   return 0;
+  day(20, ex20());
   day(19, ex19());
   day(18, ex18());
   day(17, ex17());
