@@ -12,7 +12,7 @@
 
 enum Operation { Inp, Add, Mul, Div, Mod, Eql };
 
-Operation read_operation(std::string str) {
+Operation read_operation(const std::string& str) {
   if (str == "inp")
     return Operation::Inp;
   else if (str == "add")
@@ -51,12 +51,11 @@ struct Instruction {
   int rval;
 };
 
-int64_t read_result(std::vector<std::pair<int, int64_t>> xs) {
+int64_t read_result(const std::vector<std::pair<int, int64_t>> &xs) {
   int64_t result = 0;
   int64_t sz = 1;
-  std::reverse(xs.begin(), xs.end());
-  for (auto &x : xs) {
-    int64_t digit = x.first;
+  for (auto x = xs.rbegin(); x != xs.rend(); ++x) {
+    int64_t digit = x->first;
     result += digit * sz;
     sz *= 10;
   }
@@ -81,7 +80,7 @@ int64_t Section::Eval(int w, int64_t z) {
   return (z / _4) * (25 * x + 1) + (w + _15) * x;
 }
 
-int64_t ex24_work(std::vector<Instruction> xs, bool reverse = false) {
+int64_t ex24_work(const std::vector<Instruction>& xs, bool reverse = false) {
   std::vector<Section> sections;
   for (int i = 0; i < xs.size(); i += 18) {
     Section s = Section(xs[i + 4].rval, xs[i + 5].rval, xs[i + 15].rval);
@@ -136,9 +135,9 @@ int64_t ex24_work(std::vector<Instruction> xs, bool reverse = false) {
   return read_result(digits);
 }
 
-int64_t ex24a_work(std::vector<Instruction> xs) { return ex24_work(xs); }
+int64_t ex24a_work(const std::vector<Instruction> &xs) { return ex24_work(xs); }
 
-int64_t ex24b_work(std::vector<Instruction> xs) { return ex24_work(xs, true); }
+int64_t ex24b_work(const std::vector<Instruction> &xs) { return ex24_work(xs, true); }
 
 std::tuple<int64_t, int64_t> ex24() {
   std::ifstream ex24_file("../input/24");

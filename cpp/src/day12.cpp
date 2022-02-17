@@ -11,19 +11,29 @@
 struct Edge {
   std::string start;
   std::string end;
+
+  Edge(std::string start, std::string end)
+    : start(std::move(start))
+    , end(std::move(end)) {
+  }
 };
 
 struct Path {
   std::vector<std::string> nodes;
   bool exceptionApplied;
+
+  Path(std::vector<std::string> nodes, bool exceptionApplied)
+    : nodes(std::move(nodes))
+    , exceptionApplied(exceptionApplied) {
+  }
 };
 
-int ex12_work(std::vector<Edge> xs, bool singleSmallException = false) {
+int ex12_work(const std::vector<Edge> &xs, bool singleSmallException = false) {
   // Start in 'start'
   std::vector<Path> paths;
   std::vector<std::string> path;
-  path.push_back("start");
-  paths.push_back(Path{path, false});
+  path.emplace_back("start");
+  paths.emplace_back(std::move(path), false);
 
   int pathcount = 0;
   bool hasUnfinishedPaths;
@@ -64,8 +74,8 @@ int ex12_work(std::vector<Edge> xs, bool singleSmallException = false) {
         }
 
         std::vector<std::string> newpath = p.nodes;
-        newpath.push_back(next);
-        newpaths.push_back(Path{newpath, p.exceptionApplied || visited});
+        newpath.push_back(std::move(next));
+        newpaths.emplace_back(std::move(newpath), p.exceptionApplied || visited);
         hasUnfinishedPaths = true;
       }
     }
@@ -76,9 +86,9 @@ int ex12_work(std::vector<Edge> xs, bool singleSmallException = false) {
   return pathcount;
 }
 
-int ex12a_work(std::vector<Edge> xs) { return ex12_work(xs, false); }
+int ex12a_work(const std::vector<Edge> &xs) { return ex12_work(xs, false); }
 
-int ex12b_work(std::vector<Edge> xs) { return ex12_work(xs, true); }
+int ex12b_work(const std::vector<Edge> &xs) { return ex12_work(xs, true); }
 
 std::tuple<int, int> ex12() {
   std::ifstream ex12_file("../input/12");
@@ -89,7 +99,7 @@ std::tuple<int, int> ex12() {
     int dash = line.find('-');
     std::string start = line.substr(0, dash);
     std::string end = line.substr(dash + 1, line.size());
-    ex12_input.push_back(Edge{start, end});
+    ex12_input.emplace_back(std::move(start), std::move(end));
   }
 
   int ex12a = ex12a_work(ex12_input);

@@ -13,9 +13,14 @@
 struct Display {
   std::vector<std::string> patterns;
   std::vector<std::string> digits;
+
+  Display(std::vector<std::string> patterns, std::vector<std::string> digits)
+    : patterns(std::move(patterns))
+    , digits(std::move(digits)) {
+  }
 };
 
-int ex08a_work(std::vector<Display> xs) {
+int ex08a_work(std::vector<Display> &xs) {
   int result = 0;
   for (auto &x : xs) {
     for (auto &d : x.digits) {
@@ -37,7 +42,7 @@ bool contained_in(std::string needle, std::string haystack) {
   return true;
 }
 
-int read_display(Display display) {
+int read_display(Display &display) {
   std::string digits[10];
 
   for (auto &x : display.patterns) {
@@ -99,7 +104,7 @@ int read_display(Display display) {
   return result;
 }
 
-int ex08b_work(std::vector<Display> xs) {
+int ex08b_work(std::vector<Display> &xs) {
   int result = 0;
   for (auto &x : xs) {
     result += read_display(x);
@@ -119,8 +124,7 @@ std::tuple<int, int> ex08() {
 
     auto pat = split<std::string>(patterns, ' ');
     auto dig = split<std::string>(digits, ' ');
-    Display display = Display{pat, dig};
-    ex08_input.push_back(display);
+    ex08_input.emplace_back(pat, dig);
   }
 
   int ex08a = ex08a_work(ex08_input);

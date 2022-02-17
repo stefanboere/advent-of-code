@@ -47,7 +47,7 @@ int64_t autocomplete_score(Bracket bracket) {
   return 0;
 }
 
-int ex10a_work(std::vector<std::vector<Token>> xs) {
+int ex10a_work(const std::vector<std::vector<Token>> &xs) {
   int score = 0;
   for (auto &line : xs) {
     std::vector<Bracket> openings;
@@ -68,7 +68,7 @@ int ex10a_work(std::vector<std::vector<Token>> xs) {
   return score;
 }
 
-int64_t ex10b_work(std::vector<std::vector<Token>> xs) {
+int64_t ex10b_work(const std::vector<std::vector<Token>> &xs) {
   std::vector<int64_t> scores;
   for (auto &line : xs) {
     std::vector<Bracket> openings;

@@ -10,7 +10,7 @@
 #include <vector>
 
 template <typename T>
-T resultValue(std::map<char, T> &counts) {
+T resultValue(const std::map<char, T> &counts) {
   T mostCommon = 0;
   T leastCommon = std::numeric_limits<T>().max();
   for (auto &c : counts) {
@@ -25,7 +25,7 @@ T resultValue(std::map<char, T> &counts) {
   return mostCommon - leastCommon;
 }
 
-int ex14a_work(std::map<std::pair<char, char>, char> xs, std::string start) {
+int ex14a_work(const std::map<std::pair<char, char>, char> &xs, std::string start) {
   std::vector<char> v(start.begin(), start.end());
 
   for (int j = 0; j < 10; j++) {
@@ -38,7 +38,8 @@ int ex14a_work(std::map<std::pair<char, char>, char> xs, std::string start) {
 
     for (int i = 0; i < 2 * n; i += 2) {
       std::pair<char, char> m(v[i], v[i + 2]);
-      v[i + 1] = xs[m];
+      auto ind = xs.find(m);
+      v[i + 1] = ind == xs.end() ? 0 : ind->second;
     }
   }
 
@@ -50,7 +51,7 @@ int ex14a_work(std::map<std::pair<char, char>, char> xs, std::string start) {
   return resultValue(counts);
 }
 
-int64_t ex14b_work(std::map<std::pair<char, char>, char> xs, std::string start) {
+int64_t ex14b_work(const std::map<std::pair<char, char>, char> &xs, std::string start) {
   std::map<std::pair<char, char>, int64_t> counts;
   std::map<std::pair<char, char>, int64_t> extra;
   for (size_t i = 0; i < start.size() - 1; i++) {
@@ -63,7 +64,8 @@ int64_t ex14b_work(std::map<std::pair<char, char>, char> xs, std::string start) 
     }
 
     for (auto &c : counts) {
-      char mid = xs[c.first];
+      auto ind = xs.find(c.first);
+      char mid = (ind == xs.end()) ? 0 : ind->second;
       extra[std::make_pair(c.first.first, mid)] += c.second;
       extra[std::make_pair(mid, c.first.second)] += c.second;
       c.second = 0;

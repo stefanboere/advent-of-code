@@ -9,7 +9,7 @@ const std::vector<int> ex03_example = {0b00100, 0b11110, 0b10110, 0b10111,
                                        0b10101, 0b01111, 0b00111, 0b11100,
                                        0b10000, 0b11001, 0b00010, 0b01010};
 
-int ex03a_work(std::vector<int> xs) {
+int ex03a_work(const std::vector<int> &xs) {
 
   int diffs[12] = {0};
   for (auto &x : xs) {
@@ -36,7 +36,7 @@ int ex03a_work(std::vector<int> xs) {
   return gamma * epsilon;
 }
 
-std::vector<int> ex03b_filter_crit(std::vector<int> xs, bool keep,
+std::vector<int> ex03b_filter_crit(const std::vector<int> &xs, bool keep,
                                    int column = 11) {
 
   if (xs.size() <= 1 || column < 0) {
@@ -69,17 +69,15 @@ std::vector<int> ex03b_filter_crit(std::vector<int> xs, bool keep,
       filteredXs.push_back(x);
     }
   }
-  xs.clear();
 
   return ex03b_filter_crit(filteredXs, keep, column - 1);
 }
 
-int ex03b_work(std::vector<int> xs) {
+int ex03b_work(const std::vector<int> &xs) {
   std::vector<int> xs1;
   std::vector<int> xs2;
   xs1 = xs;
   xs2 = xs;
-  xs.clear();
 
   auto oxygen = ex03b_filter_crit(xs1, true);
   auto co2 = ex03b_filter_crit(xs2, false);
@@ -87,8 +85,6 @@ int ex03b_work(std::vector<int> xs) {
   if (oxygen.size() == 1 && co2.size() == 1) {
     result = oxygen[0] * co2[0];
   }
-  oxygen.clear();
-  co2.clear();
 
   return result;
 }

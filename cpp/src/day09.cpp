@@ -8,9 +8,9 @@
 #include <string>
 #include <vector>
 
-bool is_low_point(std::vector<std::vector<int>> xs, size_t i, size_t j) {
-    std::vector<int> &row = xs[i];
-    int &self = row[j];
+bool is_low_point(const std::vector<std::vector<int>> &xs, size_t i, size_t j) {
+    auto &row = xs[i];
+    auto self = row[j];
     // A low point is lower than all four neighbors
     bool isLowPoint = true;
     isLowPoint &= j == 0 || row[j - 1] > self;
@@ -20,10 +20,10 @@ bool is_low_point(std::vector<std::vector<int>> xs, size_t i, size_t j) {
     return isLowPoint;
 }
 
-int ex09a_work(std::vector<std::vector<int>> xs) {
+int ex09a_work(const std::vector<std::vector<int>> &xs) {
   int riskLevel = 0;
   for (size_t i = 0; i < xs.size(); ++i) {
-    std::vector<int> &row = xs[i];
+    const std::vector<int> &row = xs[i];
     for (size_t j = 0; j < row.size(); ++j) {
       bool isLowPoint = is_low_point(xs, i, j);
 
@@ -35,12 +35,12 @@ int ex09a_work(std::vector<std::vector<int>> xs) {
   return riskLevel;
 }
 
-int ex09b_work(std::vector<std::vector<int>> xs) {
+int ex09b_work(const std::vector<std::vector<int>> &xs) {
   // Give each low point a unique number
   int lowPointIndex = 1;
   std::vector<std::vector<int>> basins;
   for (size_t i = 0; i < xs.size(); ++i) {
-    std::vector<int> &row = xs[i];
+    const std::vector<int> &row = xs[i];
     std::vector<int> basinrow;
     for (size_t j = 0; j < row.size(); ++j) {
       if (is_low_point(xs, i, j)) {
@@ -57,7 +57,7 @@ int ex09b_work(std::vector<std::vector<int>> xs) {
   do {
     done = true;
     for (size_t i = 0; i < xs.size(); ++i) {
-      std::vector<int> &row = xs[i];
+      const std::vector<int> &row = xs[i];
       for (size_t j = 0; j < row.size(); ++j) {
         int height = row[j];
         int basinno = basins[i][j];

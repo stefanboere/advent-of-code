@@ -10,7 +10,7 @@
 #include <vector>
 
 
-int pathlength(std::vector<std::vector<int>> &xs) {
+int pathlength(const std::vector<std::vector<int>> &xs) {
   int dx = xs[0].size();
   int dy = xs.size();
   std::vector<std::vector<int>> distances(dy, std::vector<int>(dx, std::numeric_limits<int>().max()/2));
@@ -52,11 +52,11 @@ int pathlength(std::vector<std::vector<int>> &xs) {
   return distances[dy -1][dx-1];
 }
 
-int ex15a_work(std::vector<std::vector<int>> xs) {
+int ex15a_work(const std::vector<std::vector<int>> &xs) {
   return pathlength(xs);
 }
 
-int ex15b_work(std::vector<std::vector<int>> xs) {
+int ex15b_work(const std::vector<std::vector<int>> &xs) {
   int dx = xs[0].size();
   int dy = xs.size();
   std::vector<std::vector<int>> ys(5*dy, std::vector<int>(5*dx));

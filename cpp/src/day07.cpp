@@ -5,7 +5,7 @@
 #include <tuple>
 #include <vector>
 
-int ex07_work(std::vector<int> xs, int (*cost)(int)) {
+int ex07_work(const std::vector<int> &xs, int (*cost)(int)) {
   int min = std::numeric_limits<int>::max();
   int max = 0;
   for (auto &x : xs) {
@@ -25,7 +25,7 @@ int ex07_work(std::vector<int> xs, int (*cost)(int)) {
   return fuelcost;
 }
 
-int ex07a_work(std::vector<int> xs) { return ex07_work(xs, std::abs); }
+int ex07a_work(const std::vector<int> &xs) { return ex07_work(xs, std::abs); }
 
 // 1 + 2 + 3 + .. + n = n(n+1)/2
 int euler(int y) {
@@ -33,7 +33,7 @@ int euler(int y) {
   return x * (x + 1) / 2;
 }
 
-int ex07b_work(std::vector<int> xs) { return ex07_work(xs, euler); }
+int ex07b_work(const std::vector<int> &xs) { return ex07_work(xs, euler); }
 
 std::tuple<int, int> ex07() {
   std::ifstream ex07_file("../input/07");

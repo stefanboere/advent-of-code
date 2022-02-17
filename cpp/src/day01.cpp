@@ -8,8 +8,8 @@
 const std::vector<int> ex01_example = {199, 200, 208, 210, 200,
                                        207, 240, 269, 260, 263};
 
-int ex01a_work(std::vector<int>::iterator first,
-               std::vector<int>::iterator last) {
+int ex01a_work(const std::vector<int>::const_iterator first,
+               const std::vector<int>::const_iterator last) {
   int prev = *first;
   int c = 0;
 

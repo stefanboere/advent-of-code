@@ -64,7 +64,7 @@ int energy_per_step(AmphiType t) {
   }
 }
 
-bool is_valid(burrow xs) {
+bool is_valid(const burrow &xs) {
   for (int i = 11; i < xs.size(); i++) {
     if (xs[i] != room_type(i))
       return false;
@@ -72,7 +72,7 @@ bool is_valid(burrow xs) {
   return true;
 }
 
-std::vector<std::pair<burrow, int>> next(burrow input) {
+std::vector<std::pair<burrow, int>> next(const burrow &input) {
   std::vector<std::pair<burrow, int>> result;
   if (is_valid(input))
     return result; // no next moves
@@ -172,7 +172,7 @@ char amphytype_char(AmphiType t) {
   return c;
 }
 
-void print_burrow(burrow xs) {
+void print_burrow(const burrow &xs) {
   for (int i = 0; i <= 10; i++) {
     std::cout << amphytype_char(xs[i]);
   }
@@ -187,7 +187,7 @@ void print_burrow(burrow xs) {
   std::cout << std::endl;
 }
 
-int ex23a_work(burrow xs) {
+int ex23a_work(const burrow &xs) {
   std::map<burrow, int> energies;
   energies[xs] = 0;
 

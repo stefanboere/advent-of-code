@@ -10,7 +10,7 @@
 #include <vector>
 #include "include/utils.h"
 
-int card_value(std::set<int> xs, std::array<int, 25> card) {
+int card_value(const std::set<int> &xs, const std::array<int, 25> &card) {
   int result = 0;
   for (auto &el : card) {
     if (xs.find(el) == xs.end()) {
@@ -20,7 +20,7 @@ int card_value(std::set<int> xs, std::array<int, 25> card) {
   return result;
 }
 
-int check_card(std::set<int> xs, std::array<int, 25> card) {
+int check_card(const std::set<int> &xs, const std::array<int, 25> &card) {
   // Check rows
   for (int i = 0; i < 25; i += 5) {
     bool allDrawn = true;
@@ -43,7 +43,7 @@ int check_card(std::set<int> xs, std::array<int, 25> card) {
   return -1;
 }
 
-int ex04a_work(std::vector<int> xs, std::vector<std::array<int, 25>> cards) {
+int ex04a_work(const std::vector<int> &xs, const std::vector<std::array<int, 25>> &cards) {
   std::set<int> drawn;
 
   for (auto &el : xs) {
@@ -59,7 +59,7 @@ int ex04a_work(std::vector<int> xs, std::vector<std::array<int, 25>> cards) {
   return -2;
 }
 
-int ex04b_work(std::vector<int> xs, std::vector<std::array<int, 25>> cards) {
+int ex04b_work(const std::vector<int> &xs, const std::vector<std::array<int, 25>> &cards) {
   std::set<int> drawn;
   std::set<int> removed;
 

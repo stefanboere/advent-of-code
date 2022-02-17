@@ -9,8 +9,8 @@
 #include <tuple>
 #include <vector>
 
-int64_t readInt(std::vector<bool>::iterator first,
-                std::vector<bool>::iterator last) {
+int64_t readInt(std::vector<bool>::const_iterator first,
+                std::vector<bool>::const_iterator last) {
   int64_t result = 0;
   for (auto i = first; i != last; ++i) {
     if (*i)
@@ -20,12 +20,12 @@ int64_t readInt(std::vector<bool>::iterator first,
 }
 
 struct ReadPacketResult {
-  std::vector<bool>::iterator cur;
+  std::vector<bool>::const_iterator cur;
   int versions;
   std::vector<int64_t> values;
 };
 
-int64_t packetsValue(int typeId, std::vector<int64_t> values) {
+int64_t packetsValue(int typeId, const std::vector<int64_t> &values) {
   switch (typeId) {
   case 0: // Sum
     return std::accumulate(values.begin(), values.end(), 0l);
@@ -47,7 +47,7 @@ int64_t packetsValue(int typeId, std::vector<int64_t> values) {
 }
 
 ReadPacketResult
-readPackets(std::vector<bool>::iterator first, std::vector<bool>::iterator last,
+readPackets(std::vector<bool>::const_iterator first, std::vector<bool>::const_iterator last,
             int maxNumberOfPackets = std::numeric_limits<int>().max()) {
 
   int version = 0;
@@ -101,11 +101,11 @@ readPackets(std::vector<bool>::iterator first, std::vector<bool>::iterator last,
   return ReadPacketResult{first, version, values};
 }
 
-int ex16a_work(std::vector<bool> xs) {
+int ex16a_work(const std::vector<bool> &xs) {
   return readPackets(xs.begin(), xs.end()).versions;
 }
 
-int64_t ex16b_work(std::vector<bool> xs) {
+int64_t ex16b_work(const std::vector<bool> &xs) {
   return readPackets(xs.begin(), xs.end()).values[0];
 }
 

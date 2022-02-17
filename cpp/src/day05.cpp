@@ -12,13 +12,16 @@ struct Line {
   int y0;
   int x1;
   int y1;
+
+  Line(int x0, int y0, int x1, int y1) : x0(x0), y0(y0), x1(x1), y1(y1) {
+  }
 };
 
 int sign(int x) {
   return (x > 0) ? 1 : ((x < 0) ? -1 : 0);
 }
 
-int ex05a_work(std::vector<Line> xs, bool noLimit = false) {
+int ex05a_work(const std::vector<Line> &xs, bool noLimit = false) {
   std::vector<std::tuple<int, int>> points;
 
   for (auto &l : xs) {
@@ -64,7 +67,7 @@ int ex05a_work(std::vector<Line> xs, bool noLimit = false) {
   return counter;
 }
 
-int ex05b_work(std::vector<Line> xs) {
+int ex05b_work(const std::vector<Line> &xs) {
   return ex05a_work(xs, true);
 }
 
@@ -81,8 +84,7 @@ std::tuple<int, int> ex05() {
     auto y0 = stoi(line.substr(comma0 + 1, arrow));
     auto x1 = stoi(line.substr(arrow + 2, comma1));
     auto y1 = stoi(line.substr(comma1 + 1, line.length()));
-    Line line = Line{x0, y0, x1, y1};
-    ex05_input.push_back(line);
+    ex05_input.emplace_back(x0, y0, x1, y1);
   }
 
   int ex05a = ex05a_work(ex05_input);

@@ -16,7 +16,7 @@ class Dice {
  public:
   Dice() {}
   int Roll();
-  int GetRollCount();
+  int GetRollCount() const;
 };
 
 int Dice::RollOnce() {
@@ -34,7 +34,7 @@ int Dice::Roll() {
   return total;
 }
 
-int Dice::GetRollCount() { return rollCount; }
+int Dice::GetRollCount() const { return rollCount; }
 
 class Player {
   int pos;
@@ -42,7 +42,7 @@ class Player {
 
  public:
   explicit Player(int startPos);
-  int GetScore();
+  int GetScore() const;
   bool Play(int x);
 };
 
@@ -55,7 +55,7 @@ bool Player::Play(int x) {
   return score >= 1000;
 }
 
-int Player::GetScore() { return score; }
+int Player::GetScore() const { return score; }
 
 int ex21a_work(int pos_1, int pos_2) {
   Player p1(pos_1);

@@ -15,14 +15,14 @@ class Interval {
   bool on = true;
   Interval() : Interval(0, 0) { }
   Interval(int64_t p0, int64_t p1, bool on = true) : p0(p0), p1(p1), on(on) { }
-  int64_t Length() { return std::max(p1 - p0 + 1l, 0l); }
-  static Interval Parse(std::string str);
-  void Print();
-  void ClipTo(Interval c);
-  std::vector<Interval> SplitAt(Interval other);
+  int64_t Length() const { return std::max(p1 - p0 + 1l, 0l); }
+  static Interval Parse(const std::string &str);
+  void Print() const;
+  void ClipTo(const Interval &c);
+  std::vector<Interval> SplitAt(const Interval &other) const;
 };
 
-Interval Interval::Parse(std::string str) {
+Interval Interval::Parse(const std::string& str) {
   int eq = str.find('=');
   int dots = str.find("..");
   return Interval {
@@ -31,11 +31,11 @@ Interval Interval::Parse(std::string str) {
   };
 }
 
-void Interval::Print() {
+void Interval::Print() const {
   std::cout << p0 << ".." << p1;
 }
 
-std::vector<Interval> Interval::SplitAt(Interval other) {
+std::vector<Interval> Interval::SplitAt(const Interval &other) const {
   Interval i0 = Interval(p0, std::min(other.p0 - 1, p1));
   Interval i1 = Interval(std::max(other.p0, p0), std::min(other.p1, p1), false);
   Interval i2 = Interval(std::max(other.p1 +1, p0), p1);
@@ -47,7 +47,7 @@ std::vector<Interval> Interval::SplitAt(Interval other) {
   return result;
 }
 
-void Interval::ClipTo(Interval bounds) {
+void Interval::ClipTo(const Interval &bounds) {
   p0 = std::max(p0, bounds.p0);
   p1 = std::min(p1, bounds.p1);
 }
@@ -61,14 +61,14 @@ class Cuboid {
   Cuboid() : Cuboid(Interval(), Interval(), Interval()) { }
   explicit Cuboid(Interval xyz) : Cuboid(xyz, xyz, xyz) { }
   Cuboid(Interval x, Interval y, Interval z, bool on = true) : x(x), y(y), z(z), on(on) { }
-  int64_t Volume() { return x.Length() * y.Length() * z.Length(); }
-  bool IsOn() { return on; }
-  void Print();
-  std::vector<Cuboid> Except(Cuboid other);
-  void ClipTo(Cuboid c);
+  int64_t Volume() const { return x.Length() * y.Length() * z.Length(); }
+  bool IsOn() const { return on; }
+  void Print() const;
+  std::vector<Cuboid> Except(const Cuboid& other) const;
+  void ClipTo(const Cuboid &c);
 };
 
-void Cuboid::Print() {
+void Cuboid::Print() const {
   std::cout << (on ? "on " : "off ");
   std::cout << "x=";
   x.Print();
@@ -80,7 +80,7 @@ void Cuboid::Print() {
 }
 
 // Returns up to 26 cuboids describing the remaining cubs after subtracting a cube
-std::vector<Cuboid> Cuboid::Except(Cuboid other) {
+std::vector<Cuboid> Cuboid::Except(const Cuboid &other) const {
   auto intervals_x = x.SplitAt(other.x);
   auto intervals_y = y.SplitAt(other.y);
   auto intervals_z = z.SplitAt(other.z);
@@ -108,7 +108,7 @@ std::vector<Cuboid> Cuboid::Except(Cuboid other) {
   return result;
 }
 
-void Cuboid::ClipTo(Cuboid bounds) {
+void Cuboid::ClipTo(const Cuboid& bounds) {
   x.ClipTo(bounds.x);
   y.ClipTo(bounds.y);
   z.ClipTo(bounds.z);
@@ -145,11 +145,11 @@ int64_t ex22_work(std::vector<Cuboid> xs, bool clip) {
   return result;
 }
 
-int ex22a_work(std::vector<Cuboid> xs) {
+int ex22a_work(const std::vector<Cuboid> &xs) {
   return ex22_work(xs, true);
 }
 
-int64_t ex22b_work(std::vector<Cuboid> xs) {
+int64_t ex22b_work(const std::vector<Cuboid> &xs) {
   return ex22_work(xs, false);
 }
 

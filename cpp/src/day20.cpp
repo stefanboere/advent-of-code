@@ -8,7 +8,7 @@
 #include <vector>
 
 std::vector<std::vector<bool>>
-enhance(std::vector<bool> algo, std::vector<std::vector<bool>> xs, bool bg) {
+enhance(const std::vector<bool> &algo, const std::vector<std::vector<bool>> &xs, bool bg) {
   int width = xs[0].size();
   int height = xs.size();
   std::vector<std::vector<bool>> image(xs.size() + 2,
@@ -43,7 +43,7 @@ enhance(std::vector<bool> algo, std::vector<std::vector<bool>> xs, bool bg) {
   return image;
 }
 
-int ex20a_work(std::vector<bool> algo, std::vector<std::vector<bool>> xs) {
+int ex20a_work(const std::vector<bool> &algo, const std::vector<std::vector<bool>> &xs) {
   auto xs1 = enhance(algo, xs, false);
   auto xs2 = enhance(algo, xs1, algo[0]);
   int lit = 0;
@@ -56,7 +56,7 @@ int ex20a_work(std::vector<bool> algo, std::vector<std::vector<bool>> xs) {
   return lit;
 }
 
-int ex20b_work(std::vector<bool> algo, std::vector<std::vector<bool>> xs) {
+int ex20b_work(const std::vector<bool> &algo, std::vector<std::vector<bool>> &xs) {
   bool bg = false;
   for (int i = 0; i < 50; i++) {
     xs = enhance(algo, xs, bg);

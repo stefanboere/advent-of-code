@@ -7,7 +7,7 @@
 
 enum Direction { Forward = 1, Up = 2, Down = 3 };
 
-int ex02a_work(std::vector<std::tuple<Direction, int>> xs) {
+int ex02a_work(const std::vector<std::tuple<Direction, int>> &xs) {
   int depth = 0;
   int hor = 0;
 
@@ -29,7 +29,7 @@ int ex02a_work(std::vector<std::tuple<Direction, int>> xs) {
   return depth * hor;
 }
 
-int ex02b_work(std::vector<std::tuple<Direction, int>> xs) {
+int ex02b_work(const std::vector<std::tuple<Direction, int>> &xs) {
   int depth = 0;
   int hor = 0;
   int aim = 0;

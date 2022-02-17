@@ -9,7 +9,7 @@
 
 enum Cucumber { None = 0, East, South };
 
-void print_result(std::vector<std::vector<Cucumber>> xs) {
+void print_result(const std::vector<std::vector<Cucumber>> &xs) {
   for (auto & row : xs) {
     for (auto &col : row) {
       char c = '.';
@@ -34,7 +34,7 @@ void clear(std::vector<std::vector<Cucumber>>::iterator start,
   }
 }
 
-int ex25a_work(std::vector<std::vector<Cucumber>> xs) {
+int ex25a_work(std::vector<std::vector<Cucumber>> &xs) {
   int height = xs.size();
   int width = xs[0].size();
 
